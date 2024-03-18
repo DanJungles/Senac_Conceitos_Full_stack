@@ -34,12 +34,23 @@ public class GreetingControllerTests {
 	@Autowired
 	private MockMvc mockMvc;
 
+    /*
+	O objetivo do método noParamGreetingShouldReturnDefaultMessage é testar o endpoint "/greeting",
+	o resultado esperado  é a mensagem  "hello,World", o http status é ok e o formato é json
+
+	*/
 	@Test
 	public void noParamGreetingShouldReturnDefaultMessage() throws Exception {
 
 		this.mockMvc.perform(get("/greeting")).andDo(print()).andExpect(status().isOk())
 				.andExpect(jsonPath("$.content").value("Hello, World!"));
 	}
+
+	 /*
+	O objetivo do método paramGreetingShouldReturnTailoredMessage é testar o endpoint "/greeting"
+	com a passagem de parametro "name" e o valor informado do parametro name é "Spring Community",
+	o resultado esperado é a mensagem "hello,Spring Community", o http status é ok e o formato é json
+	*/
 
 	@Test
 	public void paramGreetingShouldReturnTailoredMessage() throws Exception {
